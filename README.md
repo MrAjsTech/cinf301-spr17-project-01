@@ -15,11 +15,16 @@ The MonitorManager will be the model class that runs an infinite loop that conti
 More details are as follows:
 
 -Use Composer to install the monolog/monolog logging system.  You will notice that the Log Levels of this package include a number that include INFO, WARNING and CRITICAL.  These are the only three levels we will use to indicate if a service is running fine (INFO), not responding for two attempts (WARNING), and not responding after the third attempt (CRITICAL).  This is the output of your program.
+
 -Your project should have a directory structure that includes app/Monitors and app/GeneralUtilities, and you must conform to PSR-4 namespaces using Composer to include the autoload files
 -In your app/GeneralUtilities folder, you need the class Utilities.  This class will have your parsing arguments code from your homework (or you will need to complete it for this project) to parse the command line arguments to be passed in to the program.  
+
 -In your app/Monitors folder, you need the classes: MonitorManager, MonitorService, PortMonitorService, WebMonitorService.  The PortMonitorService checks a service by trying to open a socket to the port, and the WebMonitorService tries to open the link. (Sample programs for doing both are in the DaemonAndSignalsExample project in our class examples.)
+
 -Your MonitorService class is an abstract class with one abstract method called execute() which the derived classes PortMonitorService and WebMonitorService implement directly.  The MonitorService class should implement everything that needs to be done to monitor a service (detailed above) except for the actual step of opening the port or web page, which the implementing class does.
+
 -Your command line arguments include -c configfile -o outfile to specify the configuration file (which is an XML file) and the output file (which is the monolog produced output file).  A sample XML file is included with this project.
+
 -Each monitoring object for PortMonitorService and WebMonitorService must be instantiated using reflection (see testLoggingReflection.php in ClashesNamespaceComposer for example code) based on the services being checked as loaded from the configuration file.
 
 I will ultimately provide you with a Dockerfile that you will use to test your code and for me to grade using.  I still need to work out the service daemon issues as some things have changed with how Docker is doing things.  (I will explain in class on Monday).
